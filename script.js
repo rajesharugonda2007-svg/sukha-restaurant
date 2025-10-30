@@ -103,6 +103,12 @@ function selectDish(dishName) {
     alert(You selected: ${dishName});
   }
 }
+function selectDish(dishName) {
+  document.getElementById('dish').value = dishName;
+  document.getElementById('food').value = dishName;
+  alert("You selected: " + dishName);
+}
+
 
 
 
