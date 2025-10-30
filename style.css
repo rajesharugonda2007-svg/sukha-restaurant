@@ -53,7 +53,7 @@ footer {
 }
 
 /* WhatsApp Floating Button */
-.whatsapp-btn {
+/* .whatsapp-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -65,9 +65,9 @@ footer {
   font-weight: bold;
   text-decoration: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
-}
+} */
 
-.whatsapp-btn a {
+/* .whatsapp-btn a {
   color: white;
   text-decoration: none;
 }
@@ -103,3 +103,4 @@ footer {
   border-radius: 12px;
   object-fit: cover;
 }
+ */
