@@ -1,314 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUKHA Online Delivery Menu</title>
-    <!-- We load Tailwind CSS for easy styling and responsiveness -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom CSS styles (as requested) */
-        body {
-            <h1>Welcome to Sukha restaurant</h1>
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f7f6;
-        }
-
-        /* Simple transition for buttons */
-        .btn-primary {
-            transition: background-color 0.15s ease, transform 0.1s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(1px);
-        }
-        
-    </style>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sukha Restaurant</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body>
+  <header>
+    <h1>🍴 Sukha Restaurant</h1>
+    <p>Delicious Food & Fast Online Delivery</p>
+  </header>
 
-<body class="min-h-screen">
-
-    <div id="app" class="max-w-7xl mx-auto p-4 md:p-8">
-
-        <!-- HEADER SECTION -->
-        <header class="bg-white shadow-lg rounded-2xl p-6 mb-8">
-            <h1 class="text-4xl font-extrabold text-red-600 mb-2">SUKHA Restaurant Online Menu</h1>
-            <p class="text-gray-600 text-lg">Order your favorite dishes online for delivery.</p>
-        </header>
-
-        <!-- MAIN CONTENT LAYOUT (Menu and Cart) -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-            <!-- MENU ITEMS SECTION (2/3 width on desktop) -->
-            <main class="lg:col-span-2">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Our Special Menu</h2>
-
-                <!-- Menu Container - items will be injected here by JavaScript -->
-                <div id="menu-container" class="space-y-6">
-                    <!-- Dynamic Menu Items will go here -->
-                </div>
-            </main>
-
-            <!-- ORDER CART SECTION (1/3 width on desktop) -->
-            <aside class="lg:col-span-1 sticky top-8 h-fit">
-                <div class="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Order Cart</h2>
-
-                    <!-- Cart Items - items will be injected here by JavaScript -->
-                    <div id="cart-items" class="space-y-4 mb-6 min-h-[100px]">
-                        <p id="empty-cart-message" class="text-gray-500 italic text-sm">You haven't added any items yet.</p>
-                    </div>
-
-                    <!-- TOTALS SECTION -->
-                    <div class="border-t pt-4 space-y-2">
-                        <div class="flex justify-between font-medium text-gray-700">
-                            <span>Subtotal:</span>
-                            <span id="subtotal">₹0.00</span>
-                        </div>
-                        <div class="flex justify-between font-medium text-gray-700">
-                            <span>Delivery Fee:</span>
-                            <span id="delivery-fee">₹50.00</span>
-                        </div>
-                        <div class="flex justify-between font-bold text-xl text-red-600 border-t pt-2">
-                            <span>Total Payable:</span>
-                            <span id="total-payable">₹50.00</span>
-                        </div>
-                    </div>
-
-                    <!-- CHECKOUT BUTTON -->
-                    <button id="checkout-btn" onclick="checkout()" class="btn-primary w-full mt-6 py-3 bg-red-600 text-white text-lg font-semibold rounded-xl shadow-lg hover:bg-red-700 disabled:opacity-50" disabled>
-                        Place Order
-                    </button>
-
-                    <!-- Confirmation Message Box (Hidden by default) -->
-                    <div id="message-box" class="mt-4 p-4 text-center bg-green-100 text-green-700 rounded-lg hidden">
-                        <!-- Message will be inserted here -->
-                    </div>
-                </div>
-            </aside>
-        </div>
+  <section class="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-item">
+      <h3>Chicken Biryani</h3>
+      <p>₹180</p>
+      <button onclick="order('Chicken Biryani')">Order Now</button>
     </div>
+    <div class="menu-item">
+      <h3>Paneer Butter Masala</h3>
+      <p>₹150</p>
+      <button onclick="order('Paneer Butter Masala')">Order Now</button>
+    </div>
+    <div class="menu-item">
+      <h3>Veg Fried Rice</h3>
+      <p>₹120</p>
+      <button onclick="order('Veg Fried Rice')">Order Now</button>
+    </div>
+  </section>
 
-    <!-- JAVASCRIPT FOR APP LOGIC -->
-    <script>
-        // Data for the menu items
-        const menuItems = [{
-                id: 1,
-                name: "Chicken Biryani (Best Seller)",
-                description: "Best Selling! Spicy and aromatic basmati rice dish.",
-                price: 250,
-                image: "https://placehold.co/100x100/f87171/ffffff?text=B"
-            },
-            {
-                id: 2,
-                name: "Vegetarian Thali",
-                description: "A complete meal with three curries, daal, rice, and chapati.",
-                price: 180,
-                image: "https://placehold.co/100x100/10b981/ffffff?text=T"
-            },
-            {
-                id: 3,
-                name: "Paneer Butter Masala",
-                description: "Soft paneer cubes in a rich, creamy tomato gravy.",
-                price: 220,
-                image: "https://placehold.co/100x100/3b82f6/ffffff?text=P"
-            },
-            {
-                id: 4,
-                name: "Mutton Curry",
-                description: "Tender mutton pieces in a spicy, flavorful North Indian style gravy.",
-                price: 350,
-                image: "https://placehold.co/100x100/f59e0b/ffffff?text=M"
-            },
-            {
-                id: 5,
-                name: "Gulab Jamun (Dessert)",
-                description: "Sweet, melt-in-your-mouth milk solids dessert dipped in sugar syrup.",
-                price: 80,
-                image: "https://placehold.co/100x100/ec4899/ffffff?text=G"
-            }
-        ];
+  <footer>
+    <p>© 2025 Sukha Restaurant | Online Delivery Available 🚚</p>
+  </footer>
 
-        let cart = {}; // Stores items: { itemId: quantity }
-        const DELIVERY_FEE = 50.00;
-
-        // Declare global variables for critical DOM elements (initialized on load)
-        let cartItemsContainer, emptyMessage, subtotalEl, totalPayableEl, checkoutBtn;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize global variables once the DOM is fully loaded
-            cartItemsContainer = document.getElementById('cart-items');
-            emptyMessage = document.getElementById('empty-cart-message');
-            subtotalEl = document.getElementById('subtotal');
-            totalPayableEl = document.getElementById('total-payable');
-            checkoutBtn = document.getElementById('checkout-btn');
-
-            renderMenu();
-            updateCartDisplay();
-        });
-
-        // Function to create HTML for a single menu item
-        function createMenuItemHTML(item) {
-            return `
-                <div class="flex items-center bg-white rounded-xl shadow-md p-4 transition duration-300 hover:shadow-lg">
-                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover mr-4">
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-semibold text-gray-900">${item.name}</h3>
-                        <p class="text-sm text-gray-500">${item.description}</p>
-                        <p class="text-lg font-bold text-red-600 mt-1">₹${item.price.toFixed(2)}</p>
-                    </div>
-                    <button onclick="addToCart(${item.id})"
-                        class="btn-primary ml-4 px-4 py-2 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 text-sm">
-                        + Add
-                    </button>
-                </div>
-            `;
-        }
-
-        // Function to render all menu items
-        function renderMenu() {
-            const menuContainer = document.getElementById('menu-container');
-            if (menuContainer) {
-                menuContainer.innerHTML = menuItems.map(createMenuItemHTML).join('');
-            }
-        }
-
-        // Function to add an item to the cart
-        function addToCart(itemId) {
-            const id = itemId.toString();
-            cart[id] = (cart[id] || 0) + 1;
-            updateCartDisplay();
-        }
-
-        // Function to change item quantity in the cart
-        function changeQuantity(itemId, change) {
-            const id = itemId.toString();
-            cart[id] = (cart[id] || 0) + change;
-
-            if (cart[id] <= 0) {
-                delete cart[id]; // Remove item if quantity is zero or less
-            }
-            updateCartDisplay();
-        }
-
-        // Function to calculate cart totals
-        function calculateTotals() {
-            let subtotal = 0;
-            for (const id in cart) {
-                const item = menuItems.find(i => i.id === parseInt(id));
-                if (item) {
-                    subtotal += item.price * cart[id];
-                }
-            }
-            const totalPayable = subtotal > 0 ? subtotal + DELIVERY_FEE : 0;
-
-            return {
-                subtotal,
-                totalPayable
-            };
-        }
-
-        // Function to render the cart display and totals
-        function updateCartDisplay() {
-            // Use globally stored element references
-            if (!emptyMessage) {
-                console.error("Critical DOM elements were not fully initialized globally.");
-                return;
-            }
-
-            // Clear previous items
-            cartItemsContainer.innerHTML = '';
-
-            const {
-                subtotal,
-                totalPayable
-            } = calculateTotals();
-
-            // Render cart items
-            const cartItemCount = Object.keys(cart).length;
-            if (cartItemCount === 0) {
-                emptyMessage.style.display = 'block';
-                checkoutBtn.disabled = true;
-                totalPayableEl.textContent = '₹0.00';
-            } else {
-                emptyMessage.style.display = 'none';
-                checkoutBtn.disabled = false;
-
-                for (const id in cart) {
-                    const item = menuItems.find(i => i.id === parseInt(id));
-                    const quantity = cart[id];
-                    if (item && quantity > 0) {
-                        const itemTotal = item.price * quantity;
-                        const itemHtml = `
-                            <div class="flex items-center justify-between border-b pb-2">
-                                <div class="flex-grow">
-                                    <p class="text-gray-900 font-medium">${item.name} (<span class="text-red-500">₹${item.price.toFixed(2)}</span>)</p>
-                                    <p class="text-xs text-gray-500">Total: ₹${itemTotal.toFixed(2)}</p>
-                                </div>
-                                <div class="flex items-center space-x-1">
-                                    <button onclick="changeQuantity(${item.id}, -1)" class="w-7 h-7 bg-red-100 text-red-600 rounded-full hover:bg-red-200">-</button>
-                                    <span class="w-5 text-center font-bold">${quantity}</span>
-                                    <button onclick="changeQuantity(${item.id}, 1)" class="w-7 h-7 bg-green-100 text-green-600 rounded-full hover:bg-green-200">+</button>
-                                </div>
-                            </div>
-                        `;
-                        cartItemsContainer.innerHTML += itemHtml;
-                    }
-                }
-            }
-
-            // Update totals display
-            subtotalEl.textContent = `₹${subtotal.toFixed(2)}`;
-            totalPayableEl.textContent = `₹${totalPayable.toFixed(2)}`;
-        }
-
-        // Function to simulate checkout (replaces alert())
-        function checkout() {
-            const {
-                subtotal,
-                totalPayable
-            } = calculateTotals();
-            const messageBox = document.getElementById('message-box');
-
-            // Check for messageBox existence
-            if (!messageBox) {
-                console.error("Missing message box element. Cannot checkout.");
-                return;
-            }
-
-            if (totalPayable > 0) {
-                messageBox.classList.remove('bg-yellow-100', 'text-yellow-700');
-                messageBox.classList.add('bg-green-100', 'text-green-700');
-                messageBox.innerHTML = `
-                    **Order Successful!** (${new Date().toLocaleTimeString('en-IN')})
-                    <br>Your total bill: **₹${totalPayable.toFixed(2)}** (including ₹50 delivery fee).
-                    <br>Your food will arrive soon!
-                `;
-                messageBox.classList.remove('hidden');
-
-                // Reset cart after a successful 'order'
-                cart = {};
-                updateCartDisplay();
-
-                // Hide message after a few seconds
-                setTimeout(() => {
-                    messageBox.classList.add('hidden');
-                }, 7000);
-
-            } else {
-                messageBox.classList.remove('bg-green-100', 'text-green-700');
-                messageBox.classList.add('bg-yellow-100', 'text-yellow-700');
-                messageBox.innerHTML = 'Please add items to your cart before placing an order.';
-                messageBox.classList.remove('hidden');
-            }
-        }
-    </script src="index.js"></script>
+  <script src="script.js"></script>
 </body>
-
-
 </html>
