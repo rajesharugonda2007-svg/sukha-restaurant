@@ -1,58 +1,53 @@
-/*
- * 🍱 SUKHA Online Delivery Menu Custom CSS
- * This supplements the Tailwind CSS utility classes used in the HTML.
- */
-<style>
-    /* --- 1. Base Styling --- */
-    body {
-        /* Sets the default font and light background color for the page */
-        font-family: 'Inter', sans-serif;
-        background-color: #f4f7f6; /* Very light grey/green for a subtle background */
-    }
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff7f0;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
 
-    /* --- 2. Button Transitions (The core 'btn-primary' styles) --- */
-    .btn-primary {
-        /* Add transition for smooth hover effects on the main checkout button (+Add buttons also use this) */
-        transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-        /* Ensure the button is block-level for the w-full class to work correctly */
-        display: block; 
-    }
+header {
+  background-color: #ff7043;
+  color: white;
+  padding: 20px;
+  border-radius: 0 0 20px 20px;
+}
 
-    .btn-primary:hover {
-        /* Subtle lift on hover */
-        transform: translateY(-1px);
-        /* Adding a subtle red shadow to the main checkout button on hover for emphasis */
-        box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4); 
-    }
+.menu {
+  padding: 30px;
+}
 
-    .btn-primary:active {
-        /* Press down effect */
-        transform: translateY(1px);
-        box-shadow: none; /* Removes shadow when clicked */
-    }
+.menu-item {
+  background: white;
+  margin: 15px auto;
+  padding: 15px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
 
-    .btn-primary:disabled {
-        /* Style for the disabled checkout button */
-        cursor: not-allowed;
-        background-color: #fca5a5; /* Light red when disabled */
-    }
+.menu-item h3 {
+  margin: 5px 0;
+}
 
-    /* --- 3. Menu Item Card Enhancement --- */
-    /* Enhance the hover effect for the food item cards */
-    .flex.items-center.bg-white.rounded-xl.shadow-md.p-4 {
-        /* The existing classes provide a base, here we ensure a smooth transition */
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
+.menu-item button {
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .flex.items-center.bg-white.rounded-xl.shadow-md.p-4:hover {
-        /* Adds a stronger visual cue when hovering over a dish */
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        border-color: #ef4444; /* Optional: adds a slight red outline on hover */
-    }
-    
-    /* Optional: Ensure the cart sticks correctly on desktop views */
-    .lg\:col-span-1.sticky.top-8 {
-        align-self: flex-start; /* Ensures the sticky element respects its height */
-    }
-</style>
+.menu-item button:hover {
+  background-color: #ff5722;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 20px 20px 0 0;
+}
