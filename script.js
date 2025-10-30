@@ -96,5 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+function selectDish(dishName) {
+  const dishInput = document.getElementById("dish");
+  if (dishInput) {
+    dishInput.value = dishName;
+    alert(You selected: ${dishName});
+  }
+}
+
 
 
