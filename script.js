@@ -52,4 +52,49 @@ document.getElementById("orderBtn").addEventListener("click", () => {
     renderCart();
   }
 });
+// ---------- ORDER FORM + LOCATION SCRIPT ----------
+
+// Function to get user location and show it in form
+function getLocation() {
+  const locationInput = document.getElementById("location");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        locationInput.value = https://www.google.com/maps?q=${lat},${lon};
+      },
+      () => {
+        locationInput.placeholder = "Location access denied ❌";
+      }
+    );
+  } else {
+    locationInput.placeholder = "Geolocation not supported 🚫";
+  }
+}
+
+// Get location automatically when page loads
+window.addEventListener("load", getLocation);
+
+// WhatsApp order send function
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("orderForm");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const food = document.getElementById("food").value;
+      const location = document.getElementById("location").value;
+
+      const message = Hello Sukha Restaurant 🍴%0A%0A🧍Name: ${name}%0A📞 Phone: ${phone}%0A🍛 Order: ${food}%0A📍 Location: ${location};
+      const whatsappNumber = "917676092811"; // You can change this later
+
+      window.open(https://wa.me/${whatsappNumber}?text=${message}, "_blank");
+    });
+  }
+});
+
 
