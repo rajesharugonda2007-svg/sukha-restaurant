@@ -92,3 +92,46 @@ footer {
   right: 20px;
   font-weight: bold;
 }
+#order {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#order h2 {
+  text-align: center;
+  color: #ff6600;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#orderBtn {
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#orderBtn:hover {
+  background-color: #e65c00;
+}
+
