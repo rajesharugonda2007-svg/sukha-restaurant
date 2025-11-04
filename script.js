@@ -108,6 +108,44 @@ function selectDish(dishName) {
   document.getElementById('food').value = dishName;
   alert("You selected: " + dishName);
 }
+// Auto fill dish name when user clicks "Order Now"
+function selectDish(dishName) {
+  document.getElementById('dish').value = dishName;
+  document.getElementById('food').value = dishName;
+  alert("You selected: " + dishName);
+}
+
+// Get user location
+window.onload = function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      document.getElementById('location').value = https://www.google.com/maps?q=${lat},${lon};
+    });
+  } else {
+    document.getElementById('location').value = "Location not available";
+  }
+};
+
+// Send WhatsApp order
+function sendOrder() {
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let dish = document.getElementById("dish").value || document.getElementById("food").value;
+  let location = document.getElementById("location").value;
+
+  if (!name || !phone || !dish) {
+    alert("Please fill in all fields before ordering!");
+    return;
+  }
+
+  let message = Hello Sukha Restaurant! 🍴%0A%0AName: ${name}%0APhone: ${phone}%0ADish: ${dish}%0ALocation: ${location};
+  let whatsappNumber = "917670922811"; // change to your restaurant WhatsApp number (with 91)
+
+  let url = https://wa.me/${whatsappNumber}?text=${message};
+  window.open(url, "_blank");
+}
 
 
 
