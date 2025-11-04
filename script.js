@@ -146,9 +146,12 @@ function sendOrder() {
   let url = https://wa.me/${whatsappNumber}?text=${message};
   window.open(url, "_blank");
 }
-function scrollToOrder(){
-    document.querySelector("#orderSection").scrollIntoView({ behavior:'smooth' });
+function scrollToOrder(dishName){
+    document.getElementById("food").value = dishName; // select dish in dropdown
+    document.getElementById("dish").value = dishName; // show dish automatically in textbox
+    document.querySelector("#orderSection").scrollIntoView({behavior:'smooth'});
 }
+
 
 
 
