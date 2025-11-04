@@ -146,6 +146,9 @@ function sendOrder() {
   let url = https://wa.me/${whatsappNumber}?text=${message};
   window.open(url, "_blank");
 }
+function scrollToOrder(){
+    document.querySelector("#orderSection").scrollIntoView({ behavior:'smooth' });
+}
 
 
 
